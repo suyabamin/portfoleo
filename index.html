@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suyab Amin Sunny | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<style>
+:root{
+  --primary:#ff7a18;
+  --bg:#f7f7f7;
+  --card:#ffffff;
+  --text:#111;
+  --gray:#555;
+  --nav: rgba(255, 255, 255, 0.8);
+}
+
+.dark-mode {
+  --bg:#0f0f0f;
+  --card:#1c1c1c;
+  --text:#ffffff;
+  --gray:#bfbfbf;
+  --nav: rgba(0,0,0,.7);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body{ background:var(--bg); color:var(--text); transition:.4s; overflow-x: hidden; position: relative;}
+
+/* CALLIGRAPHY BACKGROUND */
+body::before {
+  content: "Code & Design";
+  position: fixed;
+  top: 10%;
+  left: -5%;
+  font-family: 'Great Vibes', cursive;
+  font-size: 15vw;
+  color: var(--primary);
+  opacity: 0.05;
+  transform: rotate(-15deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* NAVBAR */
+nav{ position:fixed; top:0; width:100%; padding:15px 10%; display:flex; justify-content:space-between; align-items:center; background: var(--nav); backdrop-filter:blur(10px); z-index:1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+nav a{ color:var(--text); margin-left:15px; text-decoration:none; font-weight:500; font-size: 0.9rem;}
+.toggle{ cursor:pointer; border:1px solid var(--primary); padding:5px 12px; border-radius:20px; margin-left: 10px;}
+
+/* HERO */
+header{ min-height:100vh; display:flex; align-items:center; justify-content:space-between; padding:120px 10% 60px 10%; flex-wrap:wrap; position: relative; z-index: 1;}
+.hero-text{ flex: 1; min-width: 300px; }
+.hero-text h1{ font-size:clamp(2rem, 8vw, 3.5rem); color:var(--primary); line-height: 1.1; }
+.hero-text p{ margin-top:15px; color:var(--gray); font-size:1.2rem; min-height: 1.5em; }
+
+.hero-img { flex: 1; display: flex; justify-content: center; min-width: 300px; margin-top: 40px; }
+.photo-frame {
+  position: relative;
+  padding: 15px;
+  background: rgba(255, 122, 24, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 122, 24, 0.3);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.photo-frame img { 
+  width:clamp(250px, 30vw, 320px); height:clamp(250px, 30vw, 320px); 
+  object-fit: cover; border-radius: 15px; display: block; 
+}
+
+/* SECTIONS */
+section{ padding:80px 10%; position: relative; z-index: 1;}
+.title{ font-size:2rem; margin-bottom:40px; color:var(--primary); border-bottom: 2px solid var(--primary); display: inline-block;}
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+.card{ background:var(--card); padding:25px; border-radius:15px; transition:.4s; box-shadow: 0 4px 15px rgba(0,0,0,0.05);}
+
+/* TECH STACK */
+.tech-container { display: flex; flex-wrap: wrap; gap: 15px; }
+.tech-box { background: var(--card); padding: 10px 18px; border-radius: 12px; border: 1px solid var(--primary); display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9rem;}
+
+.social-links { display: flex; gap: 25px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+.social-icon { font-size: 2.2rem; color: var(--primary); transition: 0.3s; text-decoration: none;}
+
+form input, form textarea{ width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border: 1px solid #ddd; background: var(--card); color: var(--text);}
+form button{ background:var(--primary); border:none; padding:12px 30px; border-radius:25px; cursor:pointer; color: white; font-weight: bold; width: 100%; max-width: 200px;}
+
+.admin-icon { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 2000; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+#adminOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 3000; padding: 20px; backdrop-filter: blur(5px); }
+.admin-card { background: white; padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; color: #333; max-height: 90vh; overflow-y: auto; }
+.admin-card label { display: block; margin-top: 10px; font-weight: 600; font-size: 0.8rem; color: #666; }
+.admin-card input, .admin-card textarea { width: 100%; padding: 10px; margin: 5px 0 10px 0; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9; }
+.hidden { display: none; }
+
+footer{ text-align:center; padding:40px; background:#111; color:#fff; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  nav { padding: 15px 5%; }
+  nav a { margin-left: 10px; font-size: 0.8rem; }
+  section { padding: 60px 5%; }
+}
+</style>
+</head>
+<body class="light">
+
+<nav>
+  <strong id="navNameDisplay">Suyab Sunny</strong>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#tech">Skills</a>
+    <a href="#projects">Work</a>
+    <span class="toggle" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </div>
+</nav>
+
+<header id="home">
+  <div class="hero-text" data-aos="fade-right">
+    <h1 id="nameDisplay">Suyab Amin Sunny</h1>
+    <p><span id="typing"></span></p>
+    <br>
+    <a id="cvLinkDisplay" href="#" target="_blank"><button style="width: auto;">Download CV</button></a>
+  </div>
+  <div class="hero-img" data-aos="fade-left">
+    <div class="photo-frame">
+        <img id="photoDisplay" src="https://via.placeholder.com/320" alt="Profile">
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <h2 class="title">About Me</h2>
+  <p id="aboutDisplay" data-aos="fade-up" style="line-height: 1.8; color: var(--gray); font-size: 1.1rem;"></p>
+</section>
+
+<section id="tech">
+  <h2 class="title">Programming & Tech Stack</h2>
+  <div class="tech-container" id="techStackDisplay"></div>
+</section>
+
+<section id="projects">
+  <h2 class="title">Featured Projects</h2>
+  <div class="grid">
+    <div class="card"><img src="https://via.placeholder.com/400x250" style="width:100%; border-radius:10px; margin-bottom: 10px;"><p>Video Editing Reel</p></div>
+    <div class="card"><img src="https://via.placeholder.com/400x250" style="width:100%; border-radius:10px; margin-bottom: 10px;"><p>Software Dashboard UI</p></div>
+  </div>
+
+  <div style="text-align:center; margin-top:50px;">
+    <h3 style="margin-bottom:20px;">Connect With Me</h3>
+    <div class="social-links">
+      <a id="linkGithub" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+      <a id="linkLinkedin" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+      <a id="linkFacebook" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+      <a id="linkInstagram" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="title">Contact Me</h2>
+  <form id="contact-form">
+    <input name="from_name" placeholder="Your Name" required>
+    <input name="reply_to" type="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>© 2026 Suyab Amin Sunny | Built with Passion</footer>
+
+<div class="admin-icon" onclick="openAdmin()"><i class="fa-solid fa-gear"></i></div>
+<div id="adminOverlay">
+  <div id="loginForm" class="admin-card">
+    <h2 style="margin-bottom: 20px; text-align: center;">Admin Security</h2>
+    <input type="text" id="adminID" placeholder="Admin ID">
+    <input type="password" id="adminPass" placeholder="Password">
+    <button onclick="handleLogin()" style="width:100%; background:var(--primary); color:white; border:none; padding:12px; cursor:pointer; border-radius: 8px;">Login</button>
+    <p onclick="closeAdmin()" style="text-align:center; margin-top:15px; cursor:pointer; color: #999;">Close</p>
+  </div>
+
+  <div id="customizePanel" class="admin-card hidden">
+    <h2 style="margin-bottom: 15px;">Customize Portfolio</h2>
+    <label>Profile Image URL</label><input type="text" id="editPhoto">
+    <label>Full Name</label><input type="text" id="editName">
+    <label>About Me (Restore Text Here)</label><textarea id="editAbout" rows="4"></textarea>
+    <label>CV Link</label><input type="text" id="editCV">
+    <hr style="margin: 15px 0;">
+    <label>Facebook URL</label><input type="text" id="editFacebook">
+    <label>GitHub URL</label><input type="text" id="editGithub">
+    <label>LinkedIn URL</label><input type="text" id="editLinkedin">
+    <label>Instagram URL</label><input type="text" id="editInstagram">
+    
+    <button onclick="saveChanges()" style="width:100%; background:#2ecc71; color:white; border:none; padding:12px; cursor:pointer; margin-top:10px; border-radius: 8px; font-weight: bold;">Save All Changes</button>
+    <button onclick="logout()" style="margin-top:10px; width:100%; background:none; border:none; color:red; cursor:pointer; font-size: 0.8rem;">Logout & Lock</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init();
+
+// --- EMAILJS ---
+(function() { emailjs.init("eNcQv1TUNh9gsNVRx"); })();
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const btn = this.querySelector('button');
+    btn.innerText = "Sending...";
+    emailjs.sendForm('service_kp4hxwd', 'template_bto5e6g', this)
+        .then(() => { alert('Message Sent!'); btn.innerText = "Send Message"; this.reset(); }, 
+        () => { alert('Failed! Check EmailJS setup.'); btn.innerText = "Send Message"; });
+});
+
+// --- DATA LOGIC ---
+const iconMap = { "c": "devicon-c-plain colored", "c++": "devicon-cplusplus-plain colored", "java": "devicon-java-plain colored", "dart": "devicon-dart-plain colored", "after effects": "devicon-aftereffects-plain colored", "premiere pro": "devicon-premierepro-plain colored", "photoshop": "devicon-photoshop-plain colored", "default": "fa-solid fa-code" };
+
+const defaultData = {
+  name: "Suyab Amin Sunny",
+  photo: "https://via.placeholder.com/320",
+  about: "Creative professional and video editor skilled in motion graphics and design. I build high-quality digital experiences through visuals.",
+  cv: "#",
+  skills: ["C", "C++", "Java", "Dart", "After Effects", "Premiere Pro", "Photoshop"],
+  roles: ["Creative Designer", "Video Editor"],
+  socials: { github: "#", linkedin: "#", facebook: "#", instagram: "#" }
+};
+
+let siteData = JSON.parse(localStorage.getItem('portfolio_vFinal_data')) || defaultData;
+
+function updateUI() {
+  document.getElementById("nameDisplay").innerText = siteData.name;
+  document.getElementById("navNameDisplay").innerText = siteData.name;
+  document.getElementById("aboutDisplay").innerText = siteData.about;
+  document.getElementById("photoDisplay").src = siteData.photo;
+  document.getElementById("cvLinkDisplay").href = siteData.cv;
+  document.getElementById("linkGithub").href = siteData.socials.github;
+  document.getElementById("linkLinkedin").href = siteData.socials.linkedin;
+  document.getElementById("linkFacebook").href = siteData.socials.facebook;
+  document.getElementById("linkInstagram").href = siteData.socials.instagram;
+  
+  const techDisplay = document.getElementById("techStackDisplay");
+  techDisplay.innerHTML = "";
+  siteData.skills.forEach(skill => {
+    const iconClass = iconMap[skill.toLowerCase()] || iconMap["default"];
+    techDisplay.innerHTML += `<div class="tech-box"><i class="${iconClass}"></i> ${skill}</div>`;
+  });
+}
+updateUI();
+
+let i=0, j=0;
+function type() {
+  let currentRole = siteData.roles[i];
+  document.getElementById("typing").innerText = currentRole.slice(0, j++);
+  if(j > currentRole.length) { j=0; i=(i+1)%siteData.roles.length; }
+}
+setInterval(type, 150);
+
+// --- ADMIN ---
+function openAdmin() { document.getElementById("adminOverlay").style.display = "flex"; }
+function closeAdmin() { document.getElementById("adminOverlay").style.display = "none"; logout(); }
+
+function handleLogin() {
+  const id = document.getElementById("adminID").value;
+  const pass = document.getElementById("adminPass").value;
+  if(id === "admin" && pass === "1234") {
+    document.getElementById("loginForm").classList.add("hidden");
+    document.getElementById("customizePanel").classList.remove("hidden");
+    document.getElementById("editName").value = siteData.name;
+    document.getElementById("editPhoto").value = siteData.photo;
+    document.getElementById("editAbout").value = siteData.about;
+    document.getElementById("editCV").value = siteData.cv;
+    document.getElementById("editFacebook").value = siteData.socials.facebook;
+    document.getElementById("editGithub").value = siteData.socials.github;
+    document.getElementById("editLinkedin").value = siteData.socials.linkedin;
+    document.getElementById("editInstagram").value = siteData.socials.instagram;
+  } else { alert("Access Denied!"); }
+}
+
+function saveChanges() {
+  siteData.name = document.getElementById("editName").value;
+  siteData.photo = document.getElementById("editPhoto").value;
+  siteData.about = document.getElementById("editAbout").value;
+  siteData.cv = document.getElementById("editCV").value;
+  siteData.socials.facebook = document.getElementById("editFacebook").value;
+  siteData.socials.github = document.getElementById("editGithub").value;
+  siteData.socials.linkedin = document.getElementById("editLinkedin").value;
+  siteData.socials.instagram = document.getElementById("editInstagram").value;
+  
+  localStorage.setItem('portfolio_vFinal_data', JSON.stringify(siteData));
+  updateUI();
+  alert("Saved Successfully!");
+  closeAdmin();
+}
+
+function logout() {
+  document.getElementById("loginForm").classList.remove("hidden");
+  document.getElementById("customizePanel").classList.add("hidden");
+  document.getElementById("adminID").value = "";
+  document.getElementById("adminPass").value = "";
+}
+
+function toggleTheme() { document.body.classList.toggle("dark-mode"); }
+</script>
+</body>
+</html>
